@@ -1,0 +1,15 @@
+{
+  "name": "bbs-automation",
+  "version": "1.0.0",
+  "description": "Trying out Cypress with the BBS test env.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "cypress:open": "cypress open"
+  },
+  "author": "Anna Bulava",
+  "license": "ISC",
+  "devDependencies": {
+    "cypress": "^12.14.0"
+  }
+}
