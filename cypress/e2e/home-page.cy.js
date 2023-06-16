@@ -8,7 +8,7 @@ const homePage = new HomePage();
 //дописати перевірки для індикаторів - чи стають вони активними
 
 describe('Home Page', () => {
-  it.only(`Open the page and verify the carousel`, () => {
+  it(`Open the page and verify the carousel`, () => {
     homePage.openHomePage();
     homePage.getActiveNavItem().should('have.text', 'Home');
     homePage.getCarousel().should('exist');
@@ -30,14 +30,15 @@ describe('Home Page', () => {
     homePage.getCarouselItemActive().should('exist');
   })
 
-  it(`Open the page and verify the "Who are we?" container`, () => {
+  it.only(`Open the page and verify the "Who are we?" container`, () => {
     homePage.openHomePage();
-    homePage.getWhoAreWeContainer().should('not.be.empty');
-    homePage.getWhoAreWeTitle().should('have.text', 'Who Are We?') //checking the content of the "Who are we? container
-    homePage.getFindOutMoreButton().should('exist');
+    homePage.verifyHomePageWasLoaded();
+    //homePage.getWhoAreWeContainer().should('not.be.empty');
+    //homePage.getWhoAreWeTitle().should('have.text', 'Who Are We?') //checking the content of the "Who are we? container
+    //homePage.getFindOutMoreButton().should('exist');
     homePage.clickFindOutMoreButton();
-    homePage.getWelcomeModal().should('be.visible'); //checking the visibility and content of the "Welcome" modal
-    homePage.getModalTitle().should('have.text', 'Welcome to webdriveruniversity.com');
+    homePage.getWelcomeModal().should('be.visible'); //checking the visibility and content of the "Welcome" modal // create "Open modal" + check its content
+    homePage.getModalTitle().should('have.text', 'Welcome to webdriveruniversity.com'); //move to test data
     homePage.getModalBody().should('have.text', 'Welcome to webdriveruniversity.com we sell a wide range of electrical goods such as laptops, game consoles, cameras...')
     homePage.getModalCloseIcon().should('exist');
     homePage.getModalFindOutMoreButton().should('exist');

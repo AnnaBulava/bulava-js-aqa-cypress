@@ -91,7 +91,7 @@ class HomePage {
     }
 
     clickModalCloseButton() {
-        cy.get('.btn-default').contains('Close').click();
+        this.getModalCloseButton().click();
     }
 
     getWhyChooseUsContainer(){
@@ -124,6 +124,12 @@ class HomePage {
 
     getExcellentCustomerServiceStars() {
         return cy.get('.div-star').eq(1).children();
+    }
+
+    verifyHomePageWasLoaded() {
+    this.getWhoAreWeContainer().should('not.be.empty');
+    this.getWhoAreWeTitle().should('have.text', 'Who Are We?') //checking the content of the "Who are we? container
+    this.getFindOutMoreButton().should('exist');
     }
 
 };

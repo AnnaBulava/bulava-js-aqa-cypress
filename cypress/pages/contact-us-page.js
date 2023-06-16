@@ -62,6 +62,10 @@ getAllFieldsAreRequiredError(){
     return cy.contains(errors.allFieldsAreRequired);
 }
 
+getErrorFromContactUs(error) {
+    return cy.contains(error)
+}
+
 }
 
 
