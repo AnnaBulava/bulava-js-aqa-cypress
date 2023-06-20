@@ -1,6 +1,9 @@
 /// <reference types="Cypress" />
 
 import OurProducts from "../pages/our-products";
+import { products } from "../test-data/products";
+import { productModalTexts } from "../test-data/products-modal-text";
+
 const ourProducts = new OurProducts();
 
 describe('Our Products', () => {
@@ -36,9 +39,9 @@ describe('Our Products', () => {
   it.only('Verify the modal dialog', () => {
     ourProducts.openOurProducts();
     ourProducts.getModalDialog().should('exist');
-    ourProducts.getModalDialogTitle().should('have.text', 'SPECIAL OFFER! - GET 30% OFF YOUR FIRST ORDER AT WEBDRIVERUNIVERSITY.COM');
-    // should contain // ourProducts.getModalDialogBody().contains('Please Note: All orders must be over the value of £50, adding additional coupon codes to the basket are excluded from this offer. To receive 30% off please add the following code to the basket: NEWCUSTOMER773322');
+    ourProducts.getModalDialogTitle().then($el => $el.text().trim().replace(/[\n\t]/g, '')).should('eq', productModalTexts[0].text);
+    ourProducts.getModalDialogBody().then($el => $el.text().trim().replace(/[\n\t]/g, '')).should('eq', productModalTexts[1].text);
     ourProducts.getModalDialogButtons().should('contain', 'Proceed').and('contain', 'Close') ;
-    ourProducts.getProducts().should('have.class', 'data-target');
+    ourProducts.verifyProductsTriggerModal();
   });
 });

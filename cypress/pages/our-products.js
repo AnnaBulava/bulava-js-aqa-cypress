@@ -122,8 +122,41 @@ class OurProducts {
     }
 
 
+    verifyProductsTriggerModal() {
+        cy.get('div.col-md-12 > div.row').children().each(($el, index) => {
+            expect($el).to.have.attr('data-toggle', 'modal')
+        });
+        }
+    }
 
-};
+    /*getProductId(product) {
+        if (product.id = "special-offers") {
+            this.getSpecialOffersContainer();
+        }
+        if (product.id = "container-product1") {
+            this.getCamerasContainer()
+        }
+        if (product.id = "container-product2") {
+            this.getNewLaptopsContainer()
+        }
+        if (product.id = "container-product3") {
+            this.getUsedLaptopsContainer()
+        }
+        if (product.id = "container-product4") {
+            this.getGameConsolesContainer()
+        }
+        if (product.id = "container-product5") {
+            this.getComponentsContainer()
+        }
+        if (product.id = "container-product6") {
+            this.getDesktopSystemsContainer()
+        }
+        if (product.id = "container-product7") {
+            this.getAudioContainer()
+        }
+    this.getSpecialOffersContainer().click()
+    }*/
+
 
 
 
