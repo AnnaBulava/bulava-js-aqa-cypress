@@ -1,22 +1,17 @@
 /// <reference types="Cypress" />
 
+import { products } from "../test-data/products";
 import OurProducts from "../pages/our-products";
 
 const ourProducts = new OurProducts();
 
 describe('Our Products', () => {
-  it(`Open the page and verify the products`, () => {
-    ourProducts.openOurProducts();
-    ourProducts.getProducts().should('have.length', 8);
-    ourProducts.verifySpecialOffers();
-    ourProducts.verifyCameras();
-    ourProducts.verifyNewLaptops();
-    ourProducts.verifyUsedLaptops();
-    ourProducts.verifyGameConsoles();
-    ourProducts.verifyComponents();
-    ourProducts.verifyDesktopSystems();
-    ourProducts.verifyAudio();
-  });
+  products.forEach(product => {
+    it(`Open the page and verify the product ${product.title}`, () => {
+      ourProducts.openOurProducts();//TODO: Check it!!!
+      ourProducts.verifyProduct(product, product.containerSelector, product.titleSelector, product.imageSelector);
+    })
+  })
 
   it('Verify the modal dialog', () => {
     ourProducts.openOurProducts();
