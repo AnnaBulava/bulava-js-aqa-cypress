@@ -58,10 +58,10 @@ class OurProducts {
         this.getModalDialog().should('not.be.visible');
     }
 
-    verifyProduct(product, containerSelector, titleSelector, imageSelector) {
-        this.getElement(containerSelector).should('be.visible');
-        this.getElement(titleSelector).should('have.text', product.title);
-        this.getElement(imageSelector).should('have.id', product.imageId);
+    verifyProduct(product) {
+        this.getElement(product.containerSelector).should('be.visible');
+        this.getElement(product.titleSelector).should('have.text', product.title);
+        this.getElement(product.imageSelector).should('have.id', product.imageId);
     };
 
 };
