@@ -9,31 +9,31 @@ class OurProducts {
     }
 
     getProducts () {
-        return cy.get('div.col-md-12 > div.row').children();
+        return cy.xpath('(//div[@class="row"])[2]').children();
     }
 
     getElement(selector) {
-        return cy.get(selector);
+        return cy.xpath(selector);
     }
 
     getModalDialog () {
-        return cy.get('#myModal > div > div.modal-content');
+        return cy.xpath('//div[@class="modal-content"]');
     }
 
     getModalDialogTitle () {
-        return cy.get('.modal-title');
+        return cy.xpath('//h4[@class="modal-title"]');
     }
 
     getModalDialogBody () {
-        return cy.get('.modal-body');
+        return cy.xpath('//div[@class="modal-body"]');
     }
 
     getModalDialogButtons () {
-        return cy.get('.btn.btn-default');
+        return cy.xpath('//button[@class="btn btn-default"]');
     }
 
     getModalDialogCloseIcon () {
-        return cy.get('button.close');
+        return cy.xpath('//button[@class="close"]');
     }
 
     verifyModalText () {

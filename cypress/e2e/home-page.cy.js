@@ -36,4 +36,9 @@ describe('Home Page', () => {
     homePage.openHomePage();
     homePage.verifyExcellentServiceContainerContent();
   })
+
+  it.only(`Experiment with finding a button`, () => {
+    homePage.openHomePage();
+    homePage.getButtonName('Find Out More').should('have.text', 'Find Out More')
+  })
 })

@@ -10,7 +10,7 @@ class HomePage {
     }
 
     getChevronLeft() {
-        return cy.get('.glyphicon-chevron-left');
+        return cy.xpath('//a[@data-slide="prev"]');
     }
 
     clickChevronLeft() {
@@ -18,7 +18,7 @@ class HomePage {
     }
 
     getChevronRight() {
-        return cy.get('.glyphicon-chevron-right');
+        return cy.xpath('//a[@data-slide="next"]');
     }
 
     clickChevronRight() {
@@ -27,27 +27,27 @@ class HomePage {
     }
 
     getCarouselIndicators() {
-        return cy.get('.carousel-indicators');
+        return cy.xpath('//ol[@class="carousel-indicators"]');
     }
 
     getIndicatorByIndex(index) {
-        return cy.get('.carousel-indicators li').eq(index);
+        return cy.xpath('//ol//li').eq(index);
     }
 
     getCarouselItemActive() {
-        return cy.get('.item.active');
+        return cy.xpath('//div[@class="item active"]');
     }
 
     getImageByIndex(index) {
-        return cy.get('.slide-image').eq(index);
+        return cy.xpath('//div/img[@class="slide-image"]').eq(index);
     }
 
     getActiveNavItem() {
-        return cy.get('li.active > a');
+        return cy.xpath('//li[@class="active"]/a[@href="index.html"]');
     }
 
     getWhoAreWeContainer(){
-        return cy.get('.thumbnail').eq(0);
+        return cy.xpath('(//div[@class="row"])[2]/div[1]');
     }
 
     getWhoAreWeTitle() {
@@ -63,19 +63,19 @@ class HomePage {
     }
 
     getWelcomeModal() {
-        return cy.get('.modal-dialog');
+        return cy.xpath('//div[@class="modal-dialog modal-md"]');
     }
 
     getModalTitle() {
-        return cy.get('.modal-title');
+        return cy.xpath('//h4[@class="modal-title"]');
     }
 
     getModalBody() {
-        return cy.get('.modal-body p');
+        return cy.xpath('//div[@class="modal-body"]/p');
     }
 
     getModalCloseIcon() {
-        return cy.get('button.close');
+        return cy.xpath('//button[@class="close"]');
     }
 
     clickModalCloseIcon() {
@@ -83,7 +83,7 @@ class HomePage {
     }
 
     getModalFindOutMoreButton() {
-        return cy.get('.btn-default').contains('Find Out More');
+        return cy.xpath('//div[@class="modal-footer"]/button[(text()="Find Out More")]');
     }
 
     clickModalFindOutMoreButton() {
@@ -91,7 +91,7 @@ class HomePage {
     }
 
     getModalCloseButton() {
-        return cy.get('.btn-default').contains('Close');
+        return cy.xpath('//div[@class="modal-footer"]/button[(text()="Close")]');
     }
 
     clickModalCloseButton() {
@@ -99,7 +99,7 @@ class HomePage {
     }
 
     getWhyChooseUsContainer(){
-        return cy.get('.thumbnail').eq(2);
+        return cy.xpath('(//div[@class="row"])[2]/div[3]');
     }
     
     getWhyChooseUsTitle() {
@@ -107,7 +107,7 @@ class HomePage {
     }
 
     getGreatServiceContainer(){
-        return cy.get('.thumbnail').eq(1);
+        return cy.xpath('(//div[@class="row"])[2]/div[2]');
     }
     
     getGreatServiceTitle() {
@@ -115,11 +115,11 @@ class HomePage {
     }
 
     getGreatServiceStars() {
-        return cy.get('.div-star').eq(0).children();
+        return cy.xpath('(//div[@class="caption"])[2]/div[@class="div-star"]').children();
     }
 
     getExcellentCustomerServiceContainer() {
-        return cy.get('.thumbnail').eq(3);
+        return cy.xpath('(//div[@class="row"])[2]/div[4]');
     }
     
     getExcellentCustomerServiceTitle() {
@@ -127,7 +127,7 @@ class HomePage {
     }
 
     getExcellentCustomerServiceStars() {
-        return cy.get('.div-star').eq(1).children();
+        return cy.xpath('(//div[@class="caption"])[4]/div[@class="div-star"]').children();
     }
 
     verifyCarouselHasRequiredComponents() {
@@ -197,6 +197,10 @@ class HomePage {
         this.getExcellentCustomerServiceContainer().should('not.be.empty');
         this.getExcellentCustomerServiceTitle().should('exist');
         this.getExcellentCustomerServiceStars().should('have.length', 5);
+    }
+
+    getButtonName(name){
+        return cy.xpath(`//button[contains(text(), '${name}')]`)
     }
 
 };

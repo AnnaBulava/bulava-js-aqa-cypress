@@ -13,6 +13,10 @@ class ContactUsPage {
         return cy.get('input[name="last_name"]')
     }
 
+    getLastNameByXpath(){
+        return cy.xpath('//input[@name="last_name"]')
+    }
+
     getEmail(){
         return cy.get('input[name="email"]')
     }
@@ -43,7 +47,7 @@ fillContactUsForm(user) {
         this.getFirstName().type(user.first_name);
     }
     if (user.last_name) {
-        this.getLastName().type(user.last_name);
+        this.getLastNameByXpath().type(user.last_name);
     }
     if (user.email) {
         this.getEmail().type(user.email);

@@ -4,11 +4,15 @@
 
 import { users } from "../test-data/user-test-data";
 import ContactUsPage from "../pages/contact-us-page"; //треба створити об'єкт класу нижче, аби можна було з ним працювати
+import HomePage from "../pages/home-page";
 
 const contactUsPage = new ContactUsPage();
 const userWithValidData = users[0];
 const userEmptyEmail = users[1];
 const userEmptyFirstName = users[2];
+const homePage = new HomePage();
+
+homePage.getButtonName(`Hello, ${test.name}`).click(); //just an example
 
 describe('Contact Us form', () => {
   it(`Open and fill the Contact Us form - with test case name ${userWithValidData}`, () => {
