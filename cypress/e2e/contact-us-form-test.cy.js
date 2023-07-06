@@ -16,21 +16,21 @@ const homePage = new HomePage();
 //homePage.getButtonName(`Hello, ${test.name}`).click(); //just an example
 
 describe('Contact Us form', () => {
-  it(`Open and fill the Contact Us form - with test case name ${userWithValidData}`, () => {
+  it(`Open and fill the Contact Us form - with test case name ${userWithValidData.testName}`, () => {
     contactUsStep.visit();
     contactUsStep.fillAndVerifyContactUsForm(userWithValidData);
     contactUsStep.submitContactUsForm();
     contactUsStep.verifySubmitMessageIsDisplayed();
   })
 
-  it(`Open and fill the Contact Us form - with test case name ${userEmptyEmail}`, () => {
+  it(`Open and fill the Contact Us form - with test case name ${userEmptyEmail.testName}`, () => {
     contactUsStep.visit();
     contactUsStep.fillAndVerifyContactUsForm(userEmptyEmail);
     contactUsStep.submitContactUsForm();
     contactUsStep.verifyAllErrorMessagesAreDisplayed();
   })
 
-  it(`Open and fill the Contact Us form - with test case name ${userEmptyFirstName}`, () => {
+  it(`Open and fill the Contact Us form - with test case name ${userEmptyFirstName.testName}`, () => {
     contactUsStep.visit();
     contactUsStep.fillAndVerifyContactUsForm(userEmptyFirstName);
     contactUsStep.submitContactUsForm();
