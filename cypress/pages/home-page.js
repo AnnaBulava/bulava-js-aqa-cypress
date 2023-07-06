@@ -5,6 +5,10 @@ class HomePage {
         cy.visit('http://www.webdriveruniversity.com/Page-Object-Model/index.html')
     }
 
+    static get getContactUsButton() {
+        return cy.xpath('//a[@href="../Contact-Us/contactus.html"]');
+    }
+    
     getCarousel() {
         return cy.get('#carousel-example-generic')
     }

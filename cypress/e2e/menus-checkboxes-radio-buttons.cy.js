@@ -4,6 +4,16 @@ import { dropdown2 } from "../test-data/dropdowns-values";
 import { dropdown3 } from "../test-data/dropdowns-values";
 
 const dropdown = new DropdownPage();
+const testData = [{
+    array: dropdown1,
+    id: 1
+}, {
+    array: dropdown2,
+    id: 2
+}, {
+    array: dropdown3,
+    id: 3
+}]
 
 describe('Dropdown', () => {
     it('Select dropdown', () => {
@@ -11,9 +21,12 @@ describe('Dropdown', () => {
         dropdown.getDivByTitle('Dropdown Menu(s)').should('exist');
         dropdown.getDivByTitle('Checkboxe(s)').should('exist');
         dropdown.getDivByTitle('Radio Button(s)').should('exist'); //a forEach function may be used to shorten the test for Titles
-        dropdown.verifyAllDropdownsOptions(dropdown1, 1);
-        dropdown.verifyAllDropdownsOptions(dropdown2, 2);
-        dropdown.verifyAllDropdownsOptions(dropdown3, 3);
+        testData.forEach(data => {
+            dropdown.verifyAllDropdownsOptions(data.array, data.id)
+        })
+        //dropdown.verifyAllDropdownsOptions(dropdown1, 1);
+        //dropdown.verifyAllDropdownsOptions(dropdown2, 2);
+        //dropdown.verifyAllDropdownsOptions(dropdown3, 3);
     })
 
     it('Checkboxes', () => {
