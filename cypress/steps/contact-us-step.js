@@ -1,12 +1,12 @@
 import ContactUsPage from "../pages/contact-us-page";
 import HomePage from "../pages/home-page";
+import { GeneralStep } from "./general-step";
 
-export class ContactUsPageStep {
+export class ContactUsStep extends GeneralStep {
     visit(){
         cy.visit('http://www.webdriveruniversity.com/Contact-Us/contactus.html')
         cy.url().should('include', 'contactus')
     }
-
 
     fillAndVerifyContactUsForm(user) {
         if (user.first_name) {
@@ -27,15 +27,15 @@ export class ContactUsPageStep {
         ContactUsPage.getSubmitButton.click();
     }
 
-    verifySubmitMessageIsDisplayed () {
+    verifySuccessMessageIsDisplayed () {
         ContactUsPage.getSuccessSubmitMessage.should('exist');
         ContactUsPage.getAllFieldsAreRequiredError.should('not.exist');
         ContactUsPage.getInvalidEmailError.should('not.exist');
     }
 
     verifyRedirectToContactUsPage() {
-        HomePage.visit();
-        HomePage.getContactUsButton;
+        HomePage.openHomePage();
+        HomePage.getContactUsButton.click();
         cy.url().should('include', 'contactus');
     }
 
@@ -54,4 +54,4 @@ export class ContactUsPageStep {
         
 }
 
-export const contactUsStep = new ContactUsPageStep();
+export const contactUsStep = new ContactUsStep();

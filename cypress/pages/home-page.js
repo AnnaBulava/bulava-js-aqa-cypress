@@ -1,7 +1,7 @@
 /// <reference types="Cypress" />
 
 class HomePage {
-    openHomePage() {
+    static openHomePage() {
         cy.visit('http://www.webdriveruniversity.com/Page-Object-Model/index.html')
     }
 

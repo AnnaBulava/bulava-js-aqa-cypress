@@ -17,10 +17,11 @@ const homePage = new HomePage();
 
 describe('Contact Us form', () => {
   it(`Open and fill the Contact Us form - with test case name ${userWithValidData.testName}`, () => {
-    contactUsStep.visit();
+    contactUsStep.verifyRedirectToContactUsPage();
     contactUsStep.fillAndVerifyContactUsForm(userWithValidData);
     contactUsStep.submitContactUsForm();
-    contactUsStep.verifySubmitMessageIsDisplayed();
+    contactUsStep.verifySuccessMessageIsDisplayed();
+    contactUsStep.openHomePage();
   })
 
   it(`Open and fill the Contact Us form - with test case name ${userEmptyEmail.testName}`, () => {
@@ -38,18 +39,3 @@ describe('Contact Us form', () => {
     contactUsStep.verifyInvalidEmailErrorNotDisplayed();
   })
   })
-
-
-  /*it('Open and fill the Contact Us form with without the email', () => {
-    cy.visit('http://www.webdriveruniversity.com/');
-    cy.get('#contact-us').invoke('removeAttr', 'target').click();
-    fillContactUsForm(userWithoutEmail)
-    cy.contains('Error: Invalid email address').click();
-})
-
-it('Open and fill the Contact Us form with without the first name', () => {
-  cy.visit('http://www.webdriveruniversity.com/');
-  cy.get('#contact-us').invoke('removeAttr', 'target').click();
-  fillContactUsForm(userWithoutFirstName)
-  cy.contains('Error: all fields are required').click();
-});*/

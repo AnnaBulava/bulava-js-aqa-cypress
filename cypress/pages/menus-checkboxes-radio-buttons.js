@@ -50,7 +50,21 @@ export class DropdownPage{
         return cy.xpath(`//form[@id='radio-buttons']//input[@type='radio']`)
     }
 
-    get
+    getAllSelectedDisabledRadioButtons() {
+        return cy.xpath(`//form[@id='radio-buttons-selected-disabled']//input[@type='radio']`)
+    }
+
+    getFruitSelects() {
+        return cy.xpath(`//select[@id="fruit-selects"]`);
+    }
+
+    verifyAllFruitSelectsOptions(arrayOfValues) {
+        arrayOfValues.forEach(value => {
+            this.getFruitSelects().should('exist').select(value).invoke('val').should('eq', value)
+        })
+    }
 
 
 }
+
+export default DropdownPage
