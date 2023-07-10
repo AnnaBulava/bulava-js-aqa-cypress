@@ -1,6 +1,7 @@
 /// <reference types="Cypress" />
 
 import HomePage from "../pages/home-page";
+import { homePageStep } from "../steps/home-page-step";
 
 const homePage = new HomePage();
 
@@ -9,36 +10,36 @@ const homePage = new HomePage();
 
 describe('Home Page', () => {
   it(`Open the page and verify the carousel`, () => {
-    homePage.openHomePage();
-    homePage.getActiveNavItem().should('have.text', 'Home');
-    homePage.verifyCarouselHasRequiredComponents();
-    homePage.verifyActiveImagesChange();
+    homePageStep.openHomePage();
+    homePageStep.verifyActiveNavItem();
+    homePageStep.verifyCarouselHasRequiredComponents();
+    homePageStep.verifyActiveImagesChange();
   })
 
   it(`Open the page and verify the "Who are we?" container`, () => {
-    homePage.openHomePage();
-    homePage.verifyWhoWeAreContainerContent();
-    homePage.verifyWelcomeModalContent();
-    homePage.verifyInteractionWithWelcomeModal();
+    homePageStep.openHomePage();
+    homePageStep.verifyWhoWeAreContainerContent();
+    homePageStep.verifyWelcomeModalContent();
+    homePageStep.verifyInteractionWithWelcomeModal();
   })
 
   it(`Open the page and verify the "Why choose Us?" container`, () => {
-    homePage.openHomePage();
-    homePage.verifyWhyChooseUsContainerContent();
+    homePageStep.openHomePage();
+    homePageStep.verifyWhyChooseUsContainerContent();
   })
 
   it(`Open the page and verify the "GREAT SERVICE!" container`, () => {
-    homePage.openHomePage();
-    homePage.verifyGreatServiceContainerContent();
+    homePageStep.openHomePage();
+    homePageStep.verifyGreatServiceContainerContent();
   })
 
   it(`Open the page and verify the "Excellent Customer Service!" container`, () => {
-    homePage.openHomePage();
-    homePage.verifyExcellentServiceContainerContent();
+    homePageStep.openHomePage();
+    homePageStep.verifyExcellentServiceContainerContent();
   })
 
-  it.only(`Experiment with finding a button`, () => {
-    homePage.openHomePage();
-    homePage.getButtonName('Find Out More').should('have.text', 'Find Out More')
+  it(`Experiment with finding a button`, () => {
+    homePageStep.openHomePage();
+    HomePage.getButtonName('Find Out More').should('have.text', 'Find Out More')
   })
 })

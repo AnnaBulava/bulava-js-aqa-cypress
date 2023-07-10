@@ -9,132 +9,132 @@ class HomePage {
         return cy.xpath('//a[@href="../Contact-Us/contactus.html"]');
     }
     
-    getCarousel() {
+    static get getCarousel() {
         return cy.get('#carousel-example-generic')
     }
 
-    getChevronLeft() {
+    static get getChevronLeft() {
         return cy.xpath('//a[@data-slide="prev"]');
     }
 
-    clickChevronLeft() {
+    static clickChevronLeft() {
         this.getChevronLeft().click();
     }
 
-    getChevronRight() {
+    static get getChevronRight() {
         return cy.xpath('//a[@data-slide="next"]');
     }
 
-    clickChevronRight() {
+    static clickChevronRight() {
         this.getChevronRight().click();
 
     }
 
-    getCarouselIndicators() {
+    static get getCarouselIndicators() {
         return cy.xpath('//ol[@class="carousel-indicators"]');
     }
 
-    getIndicatorByIndex(index) {
+    static getIndicatorByIndex(index) {
         return cy.xpath('//ol//li').eq(index);
     }
 
-    getCarouselItemActive() {
+    static get getCarouselItemActive() {
         return cy.xpath('//div[@class="item active"]');
     }
 
-    getImageByIndex(index) {
+    static getImageByIndex(index) {
         return cy.xpath('//div/img[@class="slide-image"]').eq(index);
     }
 
-    getActiveNavItem() {
+    static get getActiveNavItem() {
         return cy.xpath('//li[@class="active"]/a[@href="index.html"]');
     }
 
-    getWhoAreWeContainer(){
+    static get getWhoAreWeContainer(){
         return cy.xpath('(//div[@class="row"])[2]/div[1]');
     }
 
-    getWhoAreWeTitle() {
+    static get getWhoAreWeTitle() {
         return cy.contains('Who Are We?');
     }
 
-    getFindOutMoreButton() {
+    static get getFindOutMoreButton() {
         return cy.get('#button-find-out-more');
     }
 
-    clickFindOutMoreButton() {
+    static clickFindOutMoreButton() {
         this.getFindOutMoreButton().click();
     }
 
-    getWelcomeModal() {
+    static get getWelcomeModal() {
         return cy.xpath('//div[@class="modal-dialog modal-md"]');
     }
 
-    getModalTitle() {
+    static get getModalTitle() {
         return cy.xpath('//h4[@class="modal-title"]');
     }
 
-    getModalBody() {
+    static get  getModalBody() {
         return cy.xpath('//div[@class="modal-body"]/p');
     }
 
-    getModalCloseIcon() {
+    static get getModalCloseIcon() {
         return cy.xpath('//button[@class="close"]');
     }
 
-    clickModalCloseIcon() {
+    static clickModalCloseIcon() {
         this.getModalCloseIcon().click();
     }
 
-    getModalFindOutMoreButton() {
+    static get getModalFindOutMoreButton() {
         return cy.xpath('//div[@class="modal-footer"]/button[(text()="Find Out More")]');
     }
 
-    clickModalFindOutMoreButton() {
+    static clickModalFindOutMoreButton() {
         this.getModalFindOutMoreButton().click();
     }
 
-    getModalCloseButton() {
+    static get getModalCloseButton() {
         return cy.xpath('//div[@class="modal-footer"]/button[(text()="Close")]');
     }
 
-    clickModalCloseButton() {
+    static clickModalCloseButton() {
         this.getModalCloseButton().click();
     }
 
-    getWhyChooseUsContainer(){
+    static get getWhyChooseUsContainer(){
         return cy.xpath('(//div[@class="row"])[2]/div[3]');
     }
     
-    getWhyChooseUsTitle() {
+    static get getWhyChooseUsTitle() {
         return cy.contains('Why Choose Us?');
     }
 
-    getGreatServiceContainer(){
+    static get getGreatServiceContainer(){
         return cy.xpath('(//div[@class="row"])[2]/div[2]');
     }
     
-    getGreatServiceTitle() {
+    static get getGreatServiceTitle() {
         return cy.contains('GREAT SERVICE!');
     }
 
-    getGreatServiceStars() {
+    static get getGreatServiceStars() {
         return cy.xpath('(//div[@class="caption"])[2]/div[@class="div-star"]').children();
     }
 
-    getExcellentCustomerServiceContainer() {
+    static get getExcellentCustomerServiceContainer() {
         return cy.xpath('(//div[@class="row"])[2]/div[4]');
     }
     
-    getExcellentCustomerServiceTitle() {
+    static get getExcellentCustomerServiceTitle() {
         return cy.contains('Excellent Customer Service!');
     }
 
-    getExcellentCustomerServiceStars() {
+    static get getExcellentCustomerServiceStars() {
         return cy.xpath('(//div[@class="caption"])[4]/div[@class="div-star"]').children();
     }
 
-    verifyCarouselHasRequiredComponents() {
+    static verifyCarouselHasRequiredComponents() {
         this.getCarousel().should('exist');
         this.getCarouselItemActive().should('exist');
         this.getImageByIndex(0).should('be.visible');
@@ -143,7 +143,7 @@ class HomePage {
         this.getChevronRight().should('exist')
     }
 
-    verifyActiveImagesChange() {
+    static verifyActiveImagesChange() {
         this.getIndicatorByIndex(0).should('have.class', 'active');
         this.clickChevronLeft();
         this.getImageByIndex(2).should('be.visible');
@@ -157,13 +157,13 @@ class HomePage {
         this.getCarouselItemActive().should('exist');
     }
 
-    verifyWhoWeAreContainerContent() {
+    static verifyWhoWeAreContainerContent() {
         this.getWhoAreWeContainer().should('not.be.empty');
         this.getWhoAreWeTitle().should('have.text', 'Who Are We?')
         this.getFindOutMoreButton().should('exist');
     }
 
-    verifyWelcomeModalContent() {
+    static verifyWelcomeModalContent() {
         this.clickFindOutMoreButton();
         this.getWelcomeModal().should('be.visible'); //checking the visibility and content of the "Welcome" modal // create "Open modal" + check its content
         this.getModalTitle().should('have.text', 'Welcome to webdriveruniversity.com'); //move to test data
@@ -173,7 +173,7 @@ class HomePage {
         this.getModalCloseButton().should('exist');
     }
     
-    verifyInteractionWithWelcomeModal() {
+    static verifyInteractionWithWelcomeModal() {
         this.clickModalFindOutMoreButton(); //checking the interaction with the modal buttons: Find out more, Close (x2)
         this.getWelcomeModal().should('not.be.visible');
         this.clickFindOutMoreButton();
@@ -186,24 +186,24 @@ class HomePage {
         this.getWelcomeModal().should('not.be.visible');
     }
 
-    verifyWhyChooseUsContainerContent() {
+    static verifyWhyChooseUsContainerContent() {
         this.getWhyChooseUsContainer().should('not.be.empty');
         this.getWhyChooseUsTitle().should('exist');
     }
 
-    verifyGreatServiceContainerContent() {
+    static verifyGreatServiceContainerContent() {
         this.getGreatServiceContainer().should('not.be.empty');
         this.getGreatServiceTitle().should('exist');
         this.getGreatServiceStars().should('have.length', 5);
     }
 
-    verifyExcellentServiceContainerContent() {
+    static verifyExcellentServiceContainerContent() {
         this.getExcellentCustomerServiceContainer().should('not.be.empty');
         this.getExcellentCustomerServiceTitle().should('exist');
         this.getExcellentCustomerServiceStars().should('have.length', 5);
     }
 
-    getButtonName(name){
+    static getButtonName(name){
         return cy.xpath(`//button[contains(text(), '${name}')]`)
     }
 

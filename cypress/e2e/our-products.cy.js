@@ -2,22 +2,23 @@
 
 import { products } from "../test-data/products";
 import OurProducts from "../pages/our-products";
+import { ourProductsStep } from "../steps/our-products-step";
 
 const ourProducts = new OurProducts();
 
 describe('Our Products', () =>  {
   beforeEach(() => {
-    ourProducts.openOurProducts();//TODO: Check it!!!
+    ourProductsStep.openOurProducts();//TODO: Check it!!!
   })
   products.forEach(product => {
     it(`Open the page and verify the product ${product.title}`, () => {
-      ourProducts.verifyProduct(product);
+      ourProductsStep.verifyProduct(product);
     })
   })
 
   it('Verify the modal dialog', () => {
-    ourProducts.getModalDialog().should('exist');
-    ourProducts.verifyModalText();
-    ourProducts.verifyModalAppearanceAndButtons();
+    ourProductsStep.verifyModalDialogExists();
+    ourProductsStep.verifyModalText();
+    ourProductsStep.verifyModalAppearanceAndButtons();
   });
 });

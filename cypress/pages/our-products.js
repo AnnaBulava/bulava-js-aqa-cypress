@@ -4,44 +4,44 @@ import { products } from "../test-data/products";
 import { productModalTexts } from "../test-data/products-modal-text";
 
 class OurProducts {
-    openOurProducts() {
+    static openOurProducts() {
         cy.visit('http://www.webdriveruniversity.com/Page-Object-Model/products.html')
     }
 
-    getProducts () {
+    static get getProducts () {
         return cy.xpath('(//div[@class="row"])[2]').children();
     }
 
-    getElement(selector) {
+    static getElement(selector) {
         return cy.xpath(selector);
     }
 
-    getModalDialog () {
+    static get getModalDialog () {
         return cy.xpath('//div[@class="modal-content"]');
     }
 
-    getModalDialogTitle () {
+    static get getModalDialogTitle () {
         return cy.xpath('//h4[@class="modal-title"]');
     }
 
-    getModalDialogBody () {
+    static get getModalDialogBody () {
         return cy.xpath('//div[@class="modal-body"]');
     }
 
-    getModalDialogButtons () {
+    static get getModalDialogButtons () {
         return cy.xpath('//button[@class="btn btn-default"]');
     }
 
-    getModalDialogCloseIcon () {
+    static get getModalDialogCloseIcon () {
         return cy.xpath('//button[@class="close"]');
     }
 
-    verifyModalText () {
+    static verifyModalText () {
         this.getModalDialogTitle().then($el => $el.text().trim().replace(/[\n\t]/g, '')).should('eq', productModalTexts[0].text);
         this.getModalDialogBody().then($el => $el.text().trim().replace(/[\n\t]/g, '')).should('eq', productModalTexts[1].text);
     }
 
-    verifyModalAppearanceAndButtons () {
+    static verifyModalAppearanceAndButtons () {
         this.getProducts().each($el => {
             expect($el).to.have.attr('data-toggle', 'modal')
         });
@@ -58,7 +58,7 @@ class OurProducts {
         this.getModalDialog().should('not.be.visible');
     }
 
-    verifyProduct(product) {
+    static verifyProduct(product) {
         this.getElement(product.containerSelector).should('be.visible');
         this.getElement(product.titleSelector).should('have.text', product.title);
         this.getElement(product.imageSelector).should('have.id', product.imageId);
