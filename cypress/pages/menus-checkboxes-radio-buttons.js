@@ -69,7 +69,7 @@ export class DropdownPage{
     
     static verifyAllFruitSelectsOptions(arrayOfValues) {
         arrayOfValues.forEach(value => {
-            this.getFruitSelects().should('exist').select(value).invoke('val').should('eq', value);
+            this.getFruitSelects.should('exist').select(value).invoke('val').should('eq', value);
         }) //stopped working after being moved to Steps
     }
 

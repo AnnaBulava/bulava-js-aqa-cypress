@@ -19,10 +19,9 @@ describe('Accordions Page', () => {
                 accordionsStep.verifyAccordionsTitleAndDescription(accordion);
             }
             else if(index === 3) {
-                setTimeout(() => {
+                    cy.wait(7000)
                     accordionsStep.verifyAccordionsTitleAndDescription(accordion);
                     accordionsStep.verifyTextAppearBoxAfter5Seconds();
-                },10000)
             }
         })
     })

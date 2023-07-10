@@ -42,7 +42,7 @@ describe('Dropdowns, Checkboxes, Radio buttons', () => {
 
     it.only('Verify that active options can be selected and that disabled options are displayed', () => {
         dropdownStep.visit();
-        //dropdownStep.verifyActiveAndDisabledOptions();
+        dropdownStep.verifyActiveAndDisabledOptions();
         // ;dropdown.getAllSelectedDisabledRadioButtons().check('pumpkin').should('be.checked');
         // cy.get('input[value="lettuce"]').should('not.be.checked');
         // cy.get('input[value="cabbage"]').should('be.disabled');
