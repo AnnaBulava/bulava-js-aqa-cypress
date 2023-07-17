@@ -19,6 +19,18 @@ export class DataTablesButtonStatesPage {
         return cy.get('#t02>tbody>tr:eq(0)>th')
     }
 
+    static get getFirstNameField() {
+        return cy.xpath(`//input[@name='firstname']`);
+    }
+
+    static get getLastNameField() {
+        return cy.xpath(`//input[@name='lastname']`);
+    }
+
+    static get getTextArea() {
+        return cy.xpath(`//textarea[@rows='10']`);
+    }
+
     // static get getRowValueFromTable() {
     //     return cy.get('#t01>tbody>tr>td')
     // }

@@ -24,4 +24,8 @@ describe('Check the Data Tables page content', () => {
         dataTablesButtonStatesStep.checkSecondTableRowsContent();
     })
 
+    it.only(`Check text fields`, () => {
+        dataTablesButtonStatesStep.checkTextFields();
+    })
+
 })
