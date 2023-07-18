@@ -6,6 +6,30 @@ export class HomePageStep {
         cy.url().should('contain', 'Page-Object-Model')
     }
 
+    clickFindOutMoreButton() {
+        HomePage.getFindOutMoreButton.click();
+    }
+
+    clickModalCloseIcon() {
+        HomePage.getModalCloseIcon.click();
+    }
+
+    clickModalFindOutMoreButton() {
+        HomePage.getModalFindOutMoreButton.click();
+    }
+
+    clickModalCloseButton() {
+        HomePage.getModalCloseButton.click();
+    }
+
+    clickChevronLeft() {
+        HomePage.getChevronLeft.click();
+    }
+
+    clickChevronRight() {
+        HomePage.getChevronRight.click();
+    }
+    
     verifyActiveNavItem() {
         HomePage.getActiveNavItem.should('have.text', 'Home');;
     }
@@ -21,13 +45,13 @@ export class HomePageStep {
 
     verifyActiveImagesChange() {
         HomePage.getIndicatorByIndex(0).should('have.class', 'active');
-        HomePage.clickChevronLeft;
+        this.clickChevronLeft();
         HomePage.getImageByIndex(2).should('be.visible');
         HomePage.getIndicatorByIndex(2).should('have.class', 'active');
         cy.wait(3000);
-        HomePage.clickChevronRight;
+        this.clickChevronRight();
         cy.wait(3000);
-        HomePage.clickChevronRight;
+        this.clickChevronRight();
         HomePage.getImageByIndex(1).should('be.visible');
         HomePage.getIndicatorByIndex(1).should('have.class', 'active');
         HomePage.getCarouselItemActive.should('exist');
@@ -40,7 +64,7 @@ export class HomePageStep {
     }
 
     verifyWelcomeModalContent() {
-        HomePage.clickFindOutMoreButton;
+        this.clickFindOutMoreButton();
         HomePage.getWelcomeModal.should('be.visible'); //checking the visibility and content of the "Welcome" modal // create "Open modal" + check its content
         HomePage.getModalTitle.should('have.text', 'Welcome to webdriveruniversity.com'); //move to test data
         HomePage.getModalBody.should('have.text', 'Welcome to webdriveruniversity.com we sell a wide range of electrical goods such as laptops, game consoles, cameras...')
@@ -50,15 +74,15 @@ export class HomePageStep {
     }
     
     verifyInteractionWithWelcomeModal() {
-        HomePage.clickModalFindOutMoreButton; //checking the interaction with the modal buttons: Find out more, Close (x2)
+        this.clickModalFindOutMoreButton(); //checking the interaction with the modal buttons: Find out more, Close (x2)
         HomePage.getWelcomeModal.should('not.be.visible');
-        HomePage.clickFindOutMoreButton;
+        this.clickFindOutMoreButton();
         HomePage.getWelcomeModal;
-        HomePage.clickModalCloseButton;
+        this.clickModalCloseButton();
         HomePage.getWelcomeModal.should('not.be.visible');
-        HomePage.clickFindOutMoreButton;
+        this.clickFindOutMoreButton();
         HomePage.getWelcomeModal;
-        HomePage.clickModalCloseIcon;
+        this.clickModalCloseIcon();
         HomePage.getWelcomeModal.should('not.be.visible');
     }
 
@@ -77,6 +101,10 @@ export class HomePageStep {
         HomePage.getExcellentCustomerServiceContainer.should('not.be.empty');
         HomePage.getExcellentCustomerServiceTitle.should('exist');
         HomePage.getExcellentCustomerServiceStars.should('have.length', 5);
+    }
+
+    verifyButtonName() {
+        HomePage.getButtonName('Find Out More').should('have.text', 'Find Out More')
     }
 }
 

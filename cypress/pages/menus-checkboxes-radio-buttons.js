@@ -56,8 +56,16 @@ export class DropdownPage{
         return cy.xpath(`//form[@id='radio-buttons-selected-disabled']//input[@type='radio']`)
     }
 
+    // static get getAllSelectedDisabledRadioButtons() {
+    //     return cy.xpath(`//form[@id='radio-buttons-selected-disabled']`);
+    // }
+
     static get getFruitSelects() {
         return cy.xpath(`//select[@id="fruit-selects"]`);
+    }
+
+    static get getDisabledRadioButton() {
+        return cy.xpath(`//input[@value='cabbage']`)
     }
 
     static verifyDivTitles() {

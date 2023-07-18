@@ -7,9 +7,11 @@ import { ourProductsStep } from "../steps/our-products-step";
 const ourProducts = new OurProducts();
 
 describe('Our Products', () =>  {
+ 
   beforeEach(() => {
-    ourProductsStep.openOurProducts();//TODO: Check it!!!
+    ourProductsStep.openOurProducts();
   })
+
   products.forEach(product => {
     it(`Open the page and verify the product ${product.title}`, () => {
       ourProductsStep.verifyProduct(product);
