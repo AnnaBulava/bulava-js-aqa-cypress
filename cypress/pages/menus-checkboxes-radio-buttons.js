@@ -13,13 +13,6 @@ export class DropdownPage{
         return cy.xpath(`//div[@class="thumbnail"]/*[contains(text(), 'Dropdown Menu(s)')]/..//select[@id='dropdowm-menu-${id}']`)
     }
 
-    static verifyAllDropdownsOptions(arrayOfValues, dropdownId) {
-        arrayOfValues.forEach(value => {
-            //let el = value.toLowerCase().trim() - can be used to seitch all the array elements to lowercase if necessary; and to remove spaces
-            this.getDropdownById(dropdownId).should('exist').select(value).invoke('val').should('eq', value)
-        })
-    }
-
     static get getCheckboxDiv() {
         return cy.xpath(`//div[@id='checkboxes']`)
     }
@@ -56,58 +49,33 @@ export class DropdownPage{
         return cy.xpath(`//form[@id='radio-buttons-selected-disabled']//input[@type='radio']`)
     }
 
-    // static get getAllSelectedDisabledRadioButtons() {
-    //     return cy.xpath(`//form[@id='radio-buttons-selected-disabled']`);
-    // }
+    static get getAllSelectedDisabledRadioButtonsTexts() {
+        return cy.xpath(`//form[@id='radio-buttons-selected-disabled']//input`);
+    }
 
     static get getFruitSelects() {
         return cy.xpath(`//select[@id="fruit-selects"]`);
     }
 
     static get getDisabledRadioButton() {
-        return cy.xpath(`//input[@value='cabbage']`)
+        return cy.xpath(`//input[@value='cabbage']`);
     }
 
-    static verifyDivTitles() {
-        this.getDivByTitle('Dropdown Menu(s)').should('exist');
-        this.getDivByTitle('Checkboxe(s)').should('exist');
-        this.getDivByTitle('Radio Button(s)').should('exist'); //a forEach function may be used to shorten the test for Titles
-        this.getDivByTitle('Selected & Disabled').should('exist');
-    }
-    
-    static verifyAllFruitSelectsOptions(arrayOfValues) {
-        arrayOfValues.forEach(value => {
-            this.getFruitSelects.should('exist').select(value).invoke('val').should('eq', value);
-        }) //stopped working after being moved to Steps
+    static get getDisabledDropdownOption () {
+        return cy.xpath(`//select[@id="fruit-selects"]//option[@value="orange"]`)
     }
 
-    static verifyCheckboxesChecking() {
-        this.getOption().click().should('be.checked');
-        this.getOption().check().should('be.checked');
-        this.getOption().uncheck().should('not.be.checked');
-        this.getOption().click().should('be.checked');
-        this.getAllCheckboxes().each($el=>{
-            let el = $el
-            cy.wrap(el).check().should('be.checked')//cy.wrap lets using Cypress methods with what is wrapped
-        })
+    static get getLettuceRadioButton() {
+        return cy.get('input[value="lettuce"]')   
     }
 
-    static verifyRadioButtonsSelection() {
-        this.getAllRadioButtons().check('orange').should('be.checked');
-        cy.get('input[value="yellow"]').should('not.be.checked');
-        //let colorArray = ['green', 'blue', 'yellow', 'purple']
-        cy.get('body').document(doc => {
-            const test = doc.querySelector('#button2')}) //we can interact with the selector on the Document level
+    static get getYellowRadioButton() {
+        return cy.get('input[value="yellow"]');
     }
 
-    // static verifyActiveAndDisabledOptions() {
-    //     this.getAllSelectedDisabledRadioButtons().check('pumpkin').should('be.checked');
-    //     cy.get('input[value="lettuce"]').should('not.be.checked');
-    //     cy.get('input[value="cabbage"]').should('be.disabled');
-    //     this.verifyAllFruitSelectsOptions(fruitSelects);
-    //     cy.xpath(`//select[@id="fruit-selects"]//option[@value="orange"]`).should('be.disabled');
-    // }
-
+    static get getDocumentBody() {
+        return cy.get('body');
+    }
 
 }
 

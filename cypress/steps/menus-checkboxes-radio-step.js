@@ -1,5 +1,6 @@
 import DropdownPage from "../pages/menus-checkboxes-radio-buttons";
 import { selectedDisabledRadioButtons } from "../test-data/dropdowns-values";
+import { fruitSelects } from "../test-data/dropdowns-values";
 
 export class DropdownStep {
     visit() {
@@ -34,22 +35,36 @@ export class DropdownStep {
 
     verifyRadioButtonsSelection() {
         DropdownPage.getAllRadioButtons.check('orange').should('be.checked');
-        cy.get('input[value="yellow"]').should('not.be.checked');
+        DropdownPage.getYellowRadioButton.should('not.be.checked');
         //let colorArray = ['green', 'blue', 'yellow', 'purple']
-        cy.get('body').document(doc => {
+        DropdownPage.getDocumentBody.document(doc => {
             const test = doc.querySelector('#button2')}) //we can interact with the selector on the Document level
     }
     
     verifyAllFruitSelectsOptions(arrayOfValues) {
         arrayOfValues.forEach(value => {
-            DropdownPage.getFruitSelects.should('exist').select(value).invoke('val').should('eq', selectedDisabledRadioButtons)
+            DropdownPage.getFruitSelects.should('exist').select(value).invoke('val').should('eq', value)
         })
     }
+   
+    verifyActiveAndDisabledOptions() {
+        DropdownPage.getAllSelectedDisabledRadioButtonsTexts.then(($els) => {
+            return (
+                Cypress.$.makeArray($els).map((el) => el.value)
+            )
+        }).should('deep.equal', selectedDisabledRadioButtons);
+        DropdownPage.getDisabledRadioButton.should('be.disabled');
+        DropdownPage.getDisabledRadioButton.invoke('removeAttr', 'disabled');
+        DropdownPage.getAllSelectedDisabledRadioButtons.each(($el) => {
+            cy.wrap($el).check().should('be.checked');
+        })
+        DropdownPage.getLettuceRadioButton.should('not.be.checked');
+        DropdownPage.getDisabledDropdownOption.should('be.disabled');
+        DropdownPage.getDisabledDropdownOption.invoke('removeAttr', 'disabled');
+        this.verifyAllFruitSelectsOptions(fruitSelects);
+    }
 
-    
-
-
-    // verifyAllDropdownsOptions(arrayOfValues, dropdownId) {
+        // verifyAllDropdownsOptions(arrayOfValues, dropdownId) {
     //     arrayOfValues.forEach(value => {
     //         //let el = value.toLowerCase().trim() - can be used to seitch all the array elements to lowercase if necessary; and to remove spaces
     //         DropdownPage.getDropdownById(dropdownId).should('exist').select(value).invoke('val').should('eq', value)
@@ -64,23 +79,11 @@ export class DropdownStep {
     //     })
     // }
 
-    iterateThroughRadioButtons(value) {
-        console.log('value')
-        console.log(value)
-        DropdownPage.getAllSelectedDisabledRadioButtons.should('exist').check().invoke('val').should('eq', value);
-    }
-
-   
-    verifyActiveAndDisabledOptions() {
-        DropdownPage.getDisabledRadioButton.invoke('removeAttr', 'disabled').click().should('be.checked');;
-        this.iterateThroughRadioButtons();
-        }
-    //     DropdownPage.getAllSelectedDisabledRadioButtons.check('pumpkin').should('be.checked');
-    //     cy.get('input[value="lettuce"]').should('not.be.checked');
-    //     cy.get('input[value="cabbage"]').should('be.disabled');
-    //     DropdownPage.verifyAllFruitSelectsOptions(fruitSelects);
-    //     cy.xpath(`//select[@id="fruit-selects"]//option[@value="orange"]`).should('be.disabled');
-
+    // iterateThroughRadioButtons(value) {
+    //     console.log('value')
+    //     console.log(value)
+    //     DropdownPage.getAllSelectedDisabledRadioButtons.should('exist').check().invoke('val').should('eq', value);
+    // }
 
     }
 export const dropdownStep = new DropdownStep();
