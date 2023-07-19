@@ -7,7 +7,11 @@ export class ContactUsStep extends GeneralStep {
         cy.visit('http://www.webdriveruniversity.com/Contact-Us/contactus.html')
         cy.url().should('include', 'contactus')
     }
-
+    
+    verifyTitleText(text) {
+        ContactUsPage.getContactUsPageTitle.then($el => $el.text().trim()).should('eq', text);
+    }
+    
     fillAndVerifyContactUsForm(user) {
         if (user.first_name) {
             ContactUsPage.getFirstName.type(user.first_name).should('have.value', user.first_name);

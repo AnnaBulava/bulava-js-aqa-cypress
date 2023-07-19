@@ -14,7 +14,8 @@ describe('Home Page', () => {
     homePageStep.openHomePage()
   })
 
-  it(`Open the page and verify the carousel`, () => {
+  it.only(`Open the page and verify the carousel`, () => {
+    homePageStep.verifyNavPageContainer();
     homePageStep.verifyActiveNavItem();
     homePageStep.verifyCarouselHasRequiredComponents();
     homePageStep.verifyActiveImagesChange();

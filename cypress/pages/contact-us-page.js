@@ -2,6 +2,10 @@ import { errors } from "../test-data/error-messages";
 
 class ContactUsPage {
 
+    static get getContactUsPageTitle() {
+        return cy.xpath(`//h2[@name='contactme']`);
+    }
+    
     static get getFirstName(){
         return cy.get('input[name="first_name"]')
     }

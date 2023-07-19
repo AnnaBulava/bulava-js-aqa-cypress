@@ -1,6 +1,7 @@
 import HomePage from "../pages/home-page";
+import { GeneralStep } from "./general-step";
 
-export class HomePageStep {
+export class HomePageStep extends GeneralStep {
     openHomePage() {
         cy.visit('http://www.webdriveruniversity.com/Page-Object-Model/index.html');
         cy.url().should('contain', 'Page-Object-Model')
