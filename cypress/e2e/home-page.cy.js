@@ -14,9 +14,16 @@ describe('Home Page', () => {
     homePageStep.openHomePage()
   })
 
-  it.only(`Open the page and verify the carousel`, () => {
+  it(`Open the page and verify the header, navigation bar and footer`, () => {
+    homePageStep.verifyThatHeaderIsDisplayed();
+    homePageStep.verifyHeaderText('WebdriverUniversity.com (Page Object Model)')
     homePageStep.verifyNavPageContainer();
     homePageStep.verifyActiveNavItem();
+    homePageStep.verifyThatFooterIsDisplayed();
+    homePageStep.verifyFooterText();
+  })
+
+  it(`Open the page and verify the carousel`, () => {
     homePageStep.verifyCarouselHasRequiredComponents();
     homePageStep.verifyActiveImagesChange();
   })

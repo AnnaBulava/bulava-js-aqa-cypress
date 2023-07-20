@@ -6,6 +6,14 @@ describe('Check the Data Tables page content', () => {
         dataTablesButtonStatesStep.visit();
       })
 
+    it.only(`Open the page and verify the header, title and footer`, () => {
+        dataTablesButtonStatesStep.verifyThatHeaderIsDisplayed();
+        dataTablesButtonStatesStep.verifyHeaderText('WebdriverUniversity.com (Data Tables)');
+        dataTablesButtonStatesStep.verifyHeaderIsDisplayedWhenUserIsAtTheBottom();
+        dataTablesButtonStatesStep.verifyThatFooterIsDisplayed();
+        dataTablesButtonStatesStep.verifyFooterText();
+    })
+
     it(`Check Table 1's content`, () => {
         dataTablesButtonStatesStep.checkFirstTableRowsCount();
         dataTablesButtonStatesStep.checkFirstTableColumnsCount();
@@ -24,7 +32,7 @@ describe('Check the Data Tables page content', () => {
         dataTablesButtonStatesStep.checkSecondTableRowsContent();
     })
 
-    it.only(`Check text fields`, () => {
+    it(`Check text fields`, () => {
         dataTablesButtonStatesStep.checkTextFields();
     })
 

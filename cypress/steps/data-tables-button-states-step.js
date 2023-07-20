@@ -3,28 +3,35 @@ import { firstTableRowsData } from "../test-data/tables-data";
 import { secondTableRowsData } from "../test-data/tables-data";
 import { faker } from '@faker-js/faker';
 import { LoremIpsum } from "lorem-ipsum";
+import { GeneralStep } from "./general-step";
+import WebdriverUniversity from "../pages/common-website-components-page";
 
 const firstName = faker.name.firstName();
 const lastName = faker.name.lastName();
 const lorem = new LoremIpsum({
     sentencesPerParagraph: {
-      max: 8,
-      min: 4
+        max: 8,
+        min: 4
     },
     wordsPerSentence: {
-      max: 16,
-      min: 4
+        max: 16,
+        min: 4
     }
-  });
+});
 
-  let textAreaInput = lorem.generateSentences(5);
+let textAreaInput = lorem.generateSentences(5);
 
-export class DataTablesButtonStatesStep {
+export class DataTablesButtonStatesStep extends GeneralStep{
     visit () {
         DataTablesButtonStatesPage.visit();
         cy.url().should('include', 'Data-Table')
     }
 
+    verifyHeaderIsDisplayedWhenUserIsAtTheBottom() {
+        cy.scrollTo('bottom');
+        WebdriverUniversity.getWebsiteHeader.should('be.visible');
+    }
+    
     checkFirstTableRowsCount() {
         DataTablesButtonStatesPage.getFirstTableRows.should('have.length', 4)
     }

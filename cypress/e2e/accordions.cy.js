@@ -8,10 +8,10 @@ describe('Accordions Page', () => {
         accordionsStep.openAccordionsPage();
       })
 
-        it('Open the page, check the text in the header and in the Text Appear box', () => {
-            accordionsStep.verifyHeaderText();
-            accordionsStep.verifyTextAppearBoxOnPageLoad();
-        })
+    it('Open the page, check the text in the header and in the Text Appear box', () => {
+        accordionsStep.verifyHeaderText();
+        accordionsStep.verifyTextAppearBoxOnPageLoad();
+    })
 
       accordions.forEach((accordion, index) => {
         it(`Open the page and verify the visibility and content of accordion ${accordion.title}`, () => {
@@ -19,7 +19,7 @@ describe('Accordions Page', () => {
                 accordionsStep.verifyAccordionsTitleAndDescription(accordion);
             }
             else if(index === 3) {
-                    cy.wait(7000)
+                    cy.wait(10000)
                     accordionsStep.verifyAccordionsTitleAndDescription(accordion);
                     accordionsStep.verifyTextAppearBoxAfter5Seconds();
             }

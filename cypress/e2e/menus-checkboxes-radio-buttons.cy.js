@@ -7,6 +7,13 @@ describe('Dropdowns, Checkboxes, Radio buttons', () => {
         dropdownStep.visit();
       })
 
+    it(`Open the page and verify the header, page title and footer`, () => {
+        dropdownStep.verifyThatHeaderIsDisplayed();
+        dropdownStep.verifyHeaderText('WebdriverUniversity.com (Dropdown Menu(s), Checkboxe(s), Radio Button(s))')
+        dropdownStep.verifyThatFooterIsDisplayed();
+        dropdownStep.verifyFooterText();
+    })
+    
     it('Open the page and verify all dropdowns, checkboxes, radio buttons sections are present', () => {
         dropdownStep.verifyDivTitles();
     })

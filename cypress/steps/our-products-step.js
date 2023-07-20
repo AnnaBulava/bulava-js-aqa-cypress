@@ -1,8 +1,9 @@
 import OurProducts from "../pages/our-products";
 import { productModalTexts } from "../test-data/products-modal-text";
 import { products } from "../test-data/products";
+import { GeneralStep } from "./general-step";
 
-export class OurProductsStep {
+export class OurProductsStep extends GeneralStep {
     openOurProducts() {
         cy.visit('http://www.webdriveruniversity.com/Page-Object-Model/products.html')
         cy.url().should('contain', 'products');
