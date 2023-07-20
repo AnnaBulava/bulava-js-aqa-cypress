@@ -1,8 +1,9 @@
 import DropdownPage from "../pages/menus-checkboxes-radio-buttons";
 import { selectedDisabledRadioButtons } from "../test-data/dropdowns-values";
 import { fruitSelects } from "../test-data/dropdowns-values";
+import { GeneralStep } from "./general-step";
 
-export class DropdownStep {
+export class DropdownStep extends GeneralStep {
     visit() {
         cy.visit('http://www.webdriveruniversity.com/Dropdown-Checkboxes-RadioButtons/index.html');
         cy.url().should('contain', 'Dropdown-Checkboxes-RadioButtons');
@@ -69,20 +70,6 @@ export class DropdownStep {
     //         //let el = value.toLowerCase().trim() - can be used to seitch all the array elements to lowercase if necessary; and to remove spaces
     //         DropdownPage.getDropdownById(dropdownId).should('exist').select(value).invoke('val').should('eq', value)
     //     })
-    // }
-
-    // iterateThroughRadioButtons() {
-    //     let radioButtons = []
-    //     DropdownPage.getAllSelectedDisabledRadioButtons.each(($el) => {
-    //         radioButtons.push($el.invoke('val'))
-    //         //cy.log($el.text())
-    //     })
-    // }
-
-    // iterateThroughRadioButtons(value) {
-    //     console.log('value')
-    //     console.log(value)
-    //     DropdownPage.getAllSelectedDisabledRadioButtons.should('exist').check().invoke('val').should('eq', value);
     // }
 
     }

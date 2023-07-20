@@ -1,8 +1,5 @@
 /// <reference types="Cypress" />
 
-import { products } from "../test-data/products";
-import { productModalTexts } from "../test-data/products-modal-text";
-
 class OurProducts {
     static openOurProducts() {
         cy.visit('http://www.webdriveruniversity.com/Page-Object-Model/products.html')
