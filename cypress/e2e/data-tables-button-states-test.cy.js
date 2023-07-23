@@ -6,7 +6,7 @@ describe('Check the Data Tables page content', () => {
         dataTablesButtonStatesStep.visit();
       })
 
-    it.only(`Open the page and verify the header, title and footer`, () => {
+    it(`Open the page and verify the header, title and footer`, () => {
         dataTablesButtonStatesStep.verifyThatHeaderIsDisplayed();
         dataTablesButtonStatesStep.verifyHeaderText('WebdriverUniversity.com (Data Tables)');
         dataTablesButtonStatesStep.verifyHeaderIsDisplayedWhenUserIsAtTheBottom();
@@ -32,8 +32,36 @@ describe('Check the Data Tables page content', () => {
         dataTablesButtonStatesStep.checkSecondTableRowsContent();
     })
 
-    it(`Check text fields`, () => {
-        dataTablesButtonStatesStep.checkTextFields();
+    it(`Check that text fields accept and display input`, () => {
+        dataTablesButtonStatesStep.checkFirstNameTextField();
+        dataTablesButtonStatesStep.checkLastNameTextField();
+        dataTablesButtonStatesStep.checkTextArea();
+    })
+
+    it(`Check breadcrumbs' content`, () => {
+        dataTablesButtonStatesStep.checkBreadcrumbsTitleIsVisible();
+        dataTablesButtonStatesStep.checkBreadcrumbsText();
+        dataTablesButtonStatesStep.checkActiveBreadcrumbsElement();
+    })
+
+    it(`Check badges content`, () => {
+        dataTablesButtonStatesStep.checkBadgesTitleIsVisible();
+        dataTablesButtonStatesStep.checkListGroupItems();
+    })
+
+    it(`Check pages length and behavior on click`, () => {
+        dataTablesButtonStatesStep.checkPaginationLength();
+        dataTablesButtonStatesStep.checkTablesPageIsStillOpenOnClickingPaginationButton();
+    })
+
+    it(`Check single table's rows and columns counts`, () => {
+        dataTablesButtonStatesStep.checkSingleTableRowsCount();
+        dataTablesButtonStatesStep.checkSingleTableColumnsCount();
+    })
+
+    it(`Check the content of each row in the single table`, () => {
+        dataTablesButtonStatesStep.checkSingleTableColumnsTitles();
+        dataTablesButtonStatesStep.checkSingleTableRowsContent();
     })
 
 })

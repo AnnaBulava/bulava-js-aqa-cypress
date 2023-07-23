@@ -28,4 +28,18 @@ export const secondTableRowsData = [
     }
 ];
 
+export const singleTableColumnsTitles = ['#', 'First', 'Last'];
+
+export const singleTableRowsData = [
+    {
+        row: ['1', 'Andy', 'Otto']
+    },
+    {
+        row: ['2', 'Jacob', 'Jones']
+    },
+    {
+        row: ['3', 'Larry', 'Scott']
+    }
+];
+
   

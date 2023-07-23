@@ -1,6 +1,8 @@
 import DataTablesButtonStatesPage from "../pages/data-tables-button-states-page";
 import { firstTableRowsData } from "../test-data/tables-data";
 import { secondTableRowsData } from "../test-data/tables-data";
+import { singleTableColumnsTitles } from "../test-data/tables-data";
+import { singleTableRowsData } from "../test-data/tables-data";
 import { faker } from '@faker-js/faker';
 import { LoremIpsum } from "lorem-ipsum";
 import { GeneralStep } from "./general-step";
@@ -75,10 +77,101 @@ export class DataTablesButtonStatesStep extends GeneralStep{
             )
     }
 
-    checkTextFields() {
+    checkFirstNameTextField() {
         DataTablesButtonStatesPage.getFirstNameField.type(firstName).should('have.value', firstName);
+    }
+
+    checkLastNameTextField() {
         DataTablesButtonStatesPage.getLastNameField.type(lastName).should('have.value', lastName);
+    }
+
+    checkTextArea() {
         DataTablesButtonStatesPage.getTextArea.type(textAreaInput).invoke('val').should($el => expect($el.trim()).to.equal(textAreaInput));
+    }
+
+    checkBreadcrumbsTitleIsVisible() {
+        DataTablesButtonStatesPage.getBreadcrumbTitle.should('be.visible');
+    }
+
+    checkBreadcrumbsText() {
+        DataTablesButtonStatesPage.getBreadcrumbs.children().then(($els) => {
+            return (
+                Cypress.$.makeArray($els).map((el) => el.innerText)
+            )
+        }).should('deep.equal', ['Home', 'About Us', 'Contact Us']);
+    }
+
+    checkActiveBreadcrumbsElement() {
+        DataTablesButtonStatesPage.getBreadcrumbs.children('.active').should('contain', 'Contact Us');
+    }
+
+    checkBadgesTitleIsVisible() {
+        DataTablesButtonStatesPage.getBadgesTitle.should('be.visible');
+    }
+
+    checkListGroupItems() {
+        DataTablesButtonStatesPage.getBadgesListGroup.children().then(($els) => {
+            return (
+                Cypress.$.makeArray($els).map((el) => el.innerText.trim().replace(/[\n\t]/g, ', '))
+            )
+        }).should('deep.equal', [`Today's Deals, 5`, 'All Products, 20']);
+    }
+
+    checkPaginationTitleIsVisible() {
+        DataTablesButtonStatesPage.getPaginationTitle.should('be.visible');
+    }
+
+    checkPaginationLength() {
+        DataTablesButtonStatesPage.getPaginationButtons.should('have.length', 7);
+    }
+
+    // checkTablesPageIsStillOpenOnClickingPaginationButton() {
+    //     DataTablesButtonStatesPage.getPaginationButtons.invoke('attr', 'href', 'http://www.webdriveruniversity.com/Data-Table/index.html#').each(($el) => {
+    //         cy.wrap($el).click().url().should('contains', 'Data-Table');
+    //     })
+    // }
+
+    checkTablesPageIsStillOpenOnClickingPaginationButton() {
+        DataTablesButtonStatesPage.getPaginationButtons.invoke('attr', 'href', 'http://www.webdriveruniversity.com/Data-Table/index.html#').then(($el) => {
+            const links = $el.toArray()
+            return Cypress._.sample(links)    
+    }).then(($el) => {
+        expect(Cypress.dom.isJquery($el), 'jQuery element').to.be.true
+        //cy.log($el)
+    }).click().url().should('contains', 'Data-Table');
+    }
+
+    //taken the code snippet for picking a random item here - https://glebbahmutov.com/cypress-examples/recipes/click-random-element.html#click-a-single-picked-list-item
+    //Why does cy.log not work here (undefined)?
+
+    checkSingleTableRowsCount() {
+        DataTablesButtonStatesPage.getSingleTableRows.should('have.length', 3)
+    }
+
+    checkSingleTableColumnsCount() {
+        DataTablesButtonStatesPage.getSingleTableColumns.should('have.length', 3)
+    }
+
+    checkSingleTableColumnsTitles() {
+        DataTablesButtonStatesPage.getSingleTableHead.then(($els) => {
+            return (
+                Cypress.$.makeArray($els).map((el) => el.innerText)
+            )
+        }).should('deep.equal', singleTableColumnsTitles);
+    }
+    
+    checkSingleTableRowsContent() {
+
+        function rowCells(row) {
+            return Cypress._.map(row.children, (cell) => cell.innerText)
+        }
+
+        DataTablesButtonStatesPage.getSingleTableRows
+            .then(rows => Cypress._.map(rows, rowCells))
+            .each(($el, index) => {
+                expect($el).to.deep.eq(singleTableRowsData[index].row)
+            }
+            )
     }
 
     // checkFirstTableRowsContent() {

@@ -31,6 +31,48 @@ export class DataTablesButtonStatesPage {
         return cy.xpath(`//textarea[@rows='10']`);
     }
 
+    static get getBreadcrumbTitle() {
+        return cy.xpath(`//h2[contains(text(),'Breadcrumb')]`)
+    }
+
+    static get getBreadcrumbs() {
+        return cy.xpath(`//ol[@class='breadcrumb traversal-breadcrumb']`);
+    }
+
+    static get getBadgesTitle() {
+        return cy.xpath(`//h2[contains(text(),'Badges')]`);
+    }
+
+    static get getBadgesListGroup() {
+        return cy.xpath(`//ul[@class='list-group']`);
+    }
+
+    static get getPaginationTitle() {
+        return cy.xpath(`//h2[contains(text(),'Pagination')]`);
+    }
+
+    static get getPaginationButtons() {
+        return cy.xpath(`//ul[@class='pagination traversal-pagination']//li//a`);
+    }
+
+    static get getTableTitle() {
+        return cy.xpath(`//h2[contains(text(),'Table')]`);
+    }
+
+    static get getSingleTableHead() {
+        return cy.xpath(`//tr[@class='bg-primary']//th`)
+    }
+    
+    static get getSingleTableRows() {
+        return cy.xpath(`//table[@class='table table-light traversal-table']//tbody//tr`)
+    }
+
+    static get getSingleTableColumns() {
+        return cy.xpath(`//table[@class='table table-light traversal-table']//tbody//tr`)
+    }
+
+
+
     // static get getRowValueFromTable() {
     //     return cy.get('#t01>tbody>tr>td')
     // }
