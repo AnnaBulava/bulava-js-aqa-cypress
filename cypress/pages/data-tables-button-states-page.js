@@ -71,7 +71,13 @@ export class DataTablesButtonStatesPage {
         return cy.xpath(`//table[@class='table table-light traversal-table']//tbody//tr`)
     }
 
+    static get getButtonsAndStatesTitle() {
+        return cy.xpath(`//h2[contains(text(),'Buttons & States')]`);
+    }
 
+    static get getTraversalButtons() {
+        return cy.xpath(`//div[@class='traversal-buttons']`);
+    }
 
     // static get getRowValueFromTable() {
     //     return cy.get('#t01>tbody>tr>td')

@@ -144,6 +144,10 @@ export class DataTablesButtonStatesStep extends GeneralStep{
     //taken the code snippet for picking a random item here - https://glebbahmutov.com/cypress-examples/recipes/click-random-element.html#click-a-single-picked-list-item
     //Why does cy.log not work here (undefined)?
 
+    checkSingleTableTitleIsVisible() {
+        DataTablesButtonStatesPage.getTableTitle.should('be.visible');
+    }
+    
     checkSingleTableRowsCount() {
         DataTablesButtonStatesPage.getSingleTableRows.should('have.length', 3)
     }
@@ -172,6 +176,35 @@ export class DataTablesButtonStatesStep extends GeneralStep{
                 expect($el).to.deep.eq(singleTableRowsData[index].row)
             }
             )
+    }
+
+    checkButtonsAndStatesTitleIsVisible() {
+        DataTablesButtonStatesPage.getButtonsAndStatesTitle.should('be.visible');
+    }
+
+    checkTraversalButtonsLength() {
+        DataTablesButtonStatesPage.getTraversalButtons.children().should('have.length', 5);
+    }
+
+    checkTraversalButtonsStates() {
+        DataTablesButtonStatesPage.getTraversalButtons.children().then(($el) => {
+            const buttons = $el.toArray()
+            return Cypress._.sample(buttons)    
+    }).then(($el) => {
+        expect(Cypress.dom.isJquery($el), 'jQuery element').to.be.true
+    }).click().should('be.focused');
+    }
+
+    checkTraversalButtonsNames() {
+        DataTablesButtonStatesPage.getTraversalButtons.children().eq(0).should('have.text', 'Link');
+        DataTablesButtonStatesPage.getTraversalButtons.children().eq(1).should('have.text', 'Button');
+        DataTablesButtonStatesPage.getTraversalButtons.children().eq(2).should('have.value', 'Input');
+        DataTablesButtonStatesPage.getTraversalButtons.children().eq(3).should('have.value', 'Submit');
+        DataTablesButtonStatesPage.getTraversalButtons.children().eq(4).should('have.value', 'Reset');
+    }
+
+    checkTraversalLinkButton() {
+        DataTablesButtonStatesPage.getTraversalButtons.children().eq(0).invoke('attr', 'href', 'http://www.webdriveruniversity.com/Data-Table/index.html#').click().url().should('include', 'Data-Table');
     }
 
     // checkFirstTableRowsContent() {

@@ -55,6 +55,7 @@ describe('Check the Data Tables page content', () => {
     })
 
     it(`Check single table's rows and columns counts`, () => {
+        dataTablesButtonStatesStep.checkSingleTableTitleIsVisible();
         dataTablesButtonStatesStep.checkSingleTableRowsCount();
         dataTablesButtonStatesStep.checkSingleTableColumnsCount();
     })
@@ -63,5 +64,18 @@ describe('Check the Data Tables page content', () => {
         dataTablesButtonStatesStep.checkSingleTableColumnsTitles();
         dataTablesButtonStatesStep.checkSingleTableRowsContent();
     })
+
+    it.only(`Check the traversal buttons lengths, names, states, actions`, () => {
+        dataTablesButtonStatesStep.checkButtonsAndStatesTitleIsVisible();
+        dataTablesButtonStatesStep.checkTraversalButtonsLength();
+        dataTablesButtonStatesStep.checkTraversalButtonsNames();
+        dataTablesButtonStatesStep.checkTraversalButtonsStates();
+        dataTablesButtonStatesStep.checkTraversalLinkButton();
+    })
+
+    // it(`Check the traversal buttons lengths and states`, () => {
+    //     dataTablesButtonStatesStep.checkButtonsAndStatesTitleIsVisible();
+    //     dataTablesButtonStatesStep.checkTraversalButtonsLength();
+    // })
 
 })
