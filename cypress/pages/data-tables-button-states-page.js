@@ -79,10 +79,57 @@ export class DataTablesButtonStatesPage {
         return cy.xpath(`//div[@class='traversal-buttons']`);
     }
 
-    // static get getRowValueFromTable() {
-    //     return cy.get('#t01>tbody>tr>td')
-    // }
+    static get getTraversalButtonStates() {
+        return cy.xpath(`//div[@class='traversal-button-states']`);
+    }
 
+    static get getTraversalButtonOtherStates() {
+        return cy.xpath(`//div[@data-toggle='buttons']`);
+    }
+
+    static get getRandomTextTitle() {
+        return cy.xpath(`//h2[contains(text(),'Random Text')]`);
+    }
+
+    static get getParagraphWithMarkedText() {
+        return cy.xpath(`//div[@class='traversal-marked-text']//p`);
+    }
+
+    static get getMarkedText() {
+        return cy.xpath(`//mark[@class='traversal-mark']`);
+    }
+
+    static get getQuoteMainText() {
+        return cy.xpath(`//blockquote//p`);
+    }
+
+    static get getQuoteFooterText() {
+        return cy.xpath(`//blockquote//footer`);
+    }
+
+    static get getCitedText() {
+        return cy.xpath(`//cite[@class='traversal-cite']`);
+    }
+
+    static get getListsTitle() {
+        return cy.xpath(`//h2[contains(text(),'Lists')]`);
+    }
+
+    static get getDrinksList() {
+        return cy.xpath(`//ul[@class='traversal-drinks-list']//li`);
+    }
+
+    static get getFoodListWithClass() {
+        return cy.xpath(`//ul[@class='traversal-food-list']`);
+    }
+    
+    static get getFoodListWithoutClass() {
+        return cy.xpath(`//ul[@class='traversal-food-list']//li`);
+    }
+
+    static get getJobsList() {
+        return cy.xpath(`//ul[@class='traversal-job-list']`);
+    }
 
 }
 

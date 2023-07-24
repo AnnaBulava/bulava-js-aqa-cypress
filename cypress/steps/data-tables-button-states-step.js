@@ -207,16 +207,167 @@ export class DataTablesButtonStatesStep extends GeneralStep{
         DataTablesButtonStatesPage.getTraversalButtons.children().eq(0).invoke('attr', 'href', 'http://www.webdriveruniversity.com/Data-Table/index.html#').click().url().should('include', 'Data-Table');
     }
 
-    // checkFirstTableRowsContent() {
+    checkTraversalButtonStatesLength() {
+        DataTablesButtonStatesPage.getTraversalButtonStates.children().should('have.length', 4);
+    }
+    
+    checkTraversalButtonStatesNames() {
+        DataTablesButtonStatesPage.getTraversalButtonStates.children().then(($els) => {
+            return (
+                Cypress.$.makeArray($els).map((el) => el.innerText)
+            )
+        }).should('deep.equal', ['Danger', 'Warning', 'Info', 'Alert']);
+        
+    }
 
-    //     function rowCells(row) {
-    //         return Cypress._.map(row.children, (cell) => cell.innerText)
-    //     }
-    //     DataTablesButtonStatesPage.getFirstTable.contains('John').parent()
-    //     .then(rows => Cypress._.map(rows, rowCells))
-    //         .should('deep.eq', tableRowsData[0].row2)
+    checkTraversalButtonDisabledState() {
+        DataTablesButtonStatesPage.getTraversalButtonStates.children().each(($btn) => {
+            if ($btn.text() === 'Warning') {
+                expect($btn).to.have.class('disabled')
+            }
+            else {
+                expect($btn).to.not.have.class('disabled')
+            }
+        })
+    }
 
-    //     }
+    checkTraversalButtonOtherStatesLength() {
+        DataTablesButtonStatesPage.getTraversalButtonOtherStates.children().should('have.length', 4);
+    }
+    
+    checkTraversalButtonOtherStatesNames() {
+        DataTablesButtonStatesPage.getTraversalButtonOtherStates.children().then(($els) => {
+            return (
+                Cypress.$.makeArray($els).map((el) => el.innerText)
+            )
+        }).should('deep.equal', ['Button-1', 'Button-2', 'Button-3', 'Button-4']);
+        
+    }
+
+    checkTraversalButtonActiveState() {
+        DataTablesButtonStatesPage.getTraversalButtonOtherStates.children().each(($btn) => {
+            if ($btn.text() === 'Button-1') {
+                expect($btn).to.have.class('active')
+            }
+            else {
+                expect($btn).to.not.have.class('active')
+            }
+        })
+    }
+
+    checkRandomTextTitleIsVisible() {
+        DataTablesButtonStatesPage.getRandomTextTitle.should('be.visible');
+    }
+
+    checkParahraphContextWithMarkedText() {
+        DataTablesButtonStatesPage.getParagraphWithMarkedText.then($el => $el.text().trim().replace(/[\n\t]/g, '')).should('eq', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Platea dictumst quisque sagittis purus sit amet volutpat consequat.');
+    }
+
+    checkParentOfMarkedText() {
+        DataTablesButtonStatesPage.getMarkedText.parent().should('contain', 'Lorem ipsum dolor sit amet');
+    }
+
+    checkQuoteMainText() {
+        DataTablesButtonStatesPage.getQuoteMainText.should('have.text', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit');
+    }
+
+    checkQuoteFooterText() {
+        DataTablesButtonStatesPage.getQuoteFooterText.should('have.text', 'Platea dictumst quisque sagittis purus sit amet volutpat consequat.')
+    }
+
+    checkParentOfCitedText() {
+        DataTablesButtonStatesPage.getCitedText.parents().should('match', 'blockquote');
+    }
+
+    checkListsTitleIsVisible() {
+        DataTablesButtonStatesPage.getListsTitle.should('be.visible');
+    }
+
+    checkDrinksListLength() {
+        DataTablesButtonStatesPage.getDrinksList.should('have.length', 5);
+    }
+    
+    checkContentOfDrinksList() {
+        DataTablesButtonStatesPage.getDrinksList.then(($els) => {
+            return (
+                Cypress.$.makeArray($els).map((el) => el.innerText)
+            )
+        }).should('deep.equal', ['Coffee', 'Tea', 'Milk', 'Espresso', 'Sugar']);
+    }
+
+    checkDrinksListLengthAndContent() {
+        this.checkDrinksListLength();
+        this.checkContentOfDrinksList();
+    }
+
+    checkFruitsListTitle() {
+        DataTablesButtonStatesPage.getFoodListWithClass.find('#fruits').should('have.text', 'Fruits');
+    }
+    
+    checkFruitsListLength() {
+        DataTablesButtonStatesPage.getFoodListWithClass.find('#veggie').prevUntil('#fruits').should('have.length', 5);
+    }
+    
+    checkContentOfFruitsList() {
+        DataTablesButtonStatesPage.getFoodListWithClass.find('#veggie').prevUntil('#fruits').then(($els) => {
+            return (
+                Cypress.$.makeArray($els).map((el) => el.innerText)
+            )
+        }).should('deep.equal', ['Figs', 'Cherries', 'Blackberries', 'Banana', 'Apple']);
+    }
+
+    checkFruitsListLengthAndContent() {
+        this.checkFruitsListTitle();
+        this.checkFruitsListLength();
+        this.checkContentOfFruitsList();
+    }
+
+    checkVegetablesListTitle() {
+        DataTablesButtonStatesPage.getFoodListWithClass.find('#veggie').should('have.text', 'Vegetables');
+    }
+    
+    checkVegetablesListLength() {
+        DataTablesButtonStatesPage.getFoodListWithoutClass.last().prevUntil('#veggie').should('have.length', 3);
+    }
+    
+    checkContentOfVegetablesList() {
+        DataTablesButtonStatesPage.getFoodListWithoutClass.last().should('have.text', 'Lentils');
+        DataTablesButtonStatesPage.getFoodListWithoutClass.last().prevUntil('#veggie').then(($els) => {
+            return (
+                Cypress.$.makeArray($els).map((el) => el.innerText)
+            )
+        }).should('deep.equal', ['Kidney beans', 'Broccoli', 'Asparagus']);
+    }
+
+    checkVegetablesListLengthAndContent() {
+        this.checkVegetablesListTitle();
+        this.checkVegetablesListLength();
+        this.checkContentOfVegetablesList();
+    }
+
+    checkJobsListTitle() {
+        DataTablesButtonStatesPage.getJobsList.find('#types-of-jobs').should('have.text', 'Types of Jobs');
+    }
+
+    checkJobsListLength() {
+        DataTablesButtonStatesPage.getJobsList.find('.sales').prevUntil('#types-of-jobs').should('have.length', 2);
+    }
+
+    checkContentOfJobsList() {
+        DataTablesButtonStatesPage.getJobsList.find('.sales').should('have.text', 'Sales');
+        DataTablesButtonStatesPage.getJobsList.find('.sales').prevUntil('#types-of-jobs').then(($els) => {
+            return (
+                Cypress.$.makeArray($els).map((el) => el.innerText)
+            )
+        }).should('deep.equal', ['Technology', 'Finance']);
+    }
+
+    checkJobsListLengthAndContent() {
+        this.checkJobsListTitle();
+        this.checkJobsListLength();
+        this.checkContentOfJobsList()
+    }
+
     }
 
 

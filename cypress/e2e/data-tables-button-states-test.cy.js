@@ -65,7 +65,7 @@ describe('Check the Data Tables page content', () => {
         dataTablesButtonStatesStep.checkSingleTableRowsContent();
     })
 
-    it.only(`Check the traversal buttons lengths, names, states, actions`, () => {
+    it(`Check the traversal buttons length, names, states, actions`, () => {
         dataTablesButtonStatesStep.checkButtonsAndStatesTitleIsVisible();
         dataTablesButtonStatesStep.checkTraversalButtonsLength();
         dataTablesButtonStatesStep.checkTraversalButtonsNames();
@@ -73,9 +73,32 @@ describe('Check the Data Tables page content', () => {
         dataTablesButtonStatesStep.checkTraversalLinkButton();
     })
 
-    // it(`Check the traversal buttons lengths and states`, () => {
-    //     dataTablesButtonStatesStep.checkButtonsAndStatesTitleIsVisible();
-    //     dataTablesButtonStatesStep.checkTraversalButtonsLength();
-    // })
+    it(`Check the length, names, states of the second set of the traversal buttons`, () => {
+        dataTablesButtonStatesStep.checkTraversalButtonStatesLength();
+        dataTablesButtonStatesStep.checkTraversalButtonStatesNames();
+        dataTablesButtonStatesStep.checkTraversalButtonDisabledState();
+    })
+
+    it(`Check the length, names, states of the third set of the traversal buttons`, () => {
+        dataTablesButtonStatesStep.checkTraversalButtonOtherStatesLength();
+        dataTablesButtonStatesStep.checkTraversalButtonOtherStatesNames();
+        dataTablesButtonStatesStep.checkTraversalButtonActiveState();
+    })
+
+    it(`Check the Random Text paragraph's content`, () => {
+        dataTablesButtonStatesStep.checkParahraphContextWithMarkedText();
+        dataTablesButtonStatesStep.checkParentOfMarkedText();
+        dataTablesButtonStatesStep.checkQuoteMainText();
+        dataTablesButtonStatesStep.checkQuoteFooterText();
+        dataTablesButtonStatesStep.checkParentOfCitedText();
+    })
+
+    it(`Check the Lists's content`, () => {
+        dataTablesButtonStatesStep.checkDrinksListLengthAndContent();
+        dataTablesButtonStatesStep.checkFruitsListLengthAndContent();
+        dataTablesButtonStatesStep.checkVegetablesListLengthAndContent();
+        dataTablesButtonStatesStep.checkJobsListLengthAndContent();
+    })
+    
 
 })
