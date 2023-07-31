@@ -55,6 +55,10 @@ export class ContactUsStep extends GeneralStep {
     verifyInvalidEmailErrorNotDisplayed() {
         ContactUsPage.getInvalidEmailError.should('not.exist')
     }
+
+    logMessage(message) {
+        cy.task('logMessage', message); //helps us to call an event (i.e. a task)
+    }
         
 }
 

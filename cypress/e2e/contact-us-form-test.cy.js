@@ -27,6 +27,11 @@ describe('Contact Us form', () => {
     contactUsStep.verifyHeaderText('WebdriverUniversity.com (New Approach To Learning)');
     contactUsStep.verifyThatFooterIsDisplayed();
     contactUsStep.verifyFooterText();
+    contactUsStep.logMessage('Test message');
+    //cy.task for name, age
+    cy.task('checkCountOfFilesInFolder', 'cypress/fixtures').then((count) => {
+      cy.log(count); //will give us the length of the array with the files
+    })
   })
   
   it(`Open and fill the Contact Us form - with test case name ${userWithValidData.testName}`, () => {
@@ -48,5 +53,19 @@ describe('Contact Us form', () => {
     contactUsStep.submitContactUsForm();
     contactUsStep.verifyAllFieldsAreRequiredErrorDisplayed();
     contactUsStep.verifyInvalidEmailErrorNotDisplayed();
+  })
+
+  it('Check that user was created in the database', () => {
+    cy.task('queryToDb', 'SELECT * FROM test.users WHERE id = 1').then((rows) => {
+      expect(rows[0].name).to.equal('Test'); //we connect to the DB, got the rows and found our user. We need "then" here because we wait till the query has been executed. We test using "expect" because we received a JQuery element after "then".
+      expect(rows[0].email).to.equal('abc@test.com');
+      expect(rows[0].age).to.equal(23);
+    })
+  })
+
+  it.only('Check data from API', () => {
+    cy.task('fetchDataFromAPI', 'https://restful-booker.kerokuapp.com/booking'.then((data) => {
+      expect(data[0].bookingid).to.greaterThan(0);
+    }))
   })
   })
