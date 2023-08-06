@@ -17,6 +17,7 @@
   "dependencies": {
     "axios": "^1.4.0",
     "cypress-commands": "^3.0.0",
+    "dayjs": "^1.11.9",
     "lorem-ipsum": "^2.0.8",
     "mysql": "^2.18.1"
   }
