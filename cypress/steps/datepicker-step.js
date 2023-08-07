@@ -29,6 +29,27 @@ export class DatepickerStep extends GeneralStep {
         DatepickerPage.getDatepickerReadonlyInput.invoke('val').should('eq', nextDayDate);
         })
         }
+
+    selectNextMonthDate() {
+        // cy.getCurrentDate().then((currentDate) => {
+        // const nextDayDate = dayjs(currentDate).add(1, 'day').format('MM-DD-YYYY');
+        // const nextMonthDate = dayjs(nextDayDate).add(1, 'month').format('MM-DD-YYYY');
+        // const newMonth = dayjs(nextMonthDate).format('MMM');
+        DatepickerPage.getDatepickerSwitch.click();
+        
+        //continue from here
+
+        // DatepickerPage.getDatepickerCalendarIcon.click();
+        // DatepickerPage.getDatepickerDayByTitle(dayOfMonth).click();
+        // DatepickerPage.getDatepickerReadonlyInput.invoke('val').should('eq', nextDayDate);
+        // })
+
+    }
+
+    // selectNextYearDate() {
+
+        
+    // }
     
 }
 

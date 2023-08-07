@@ -15,6 +15,10 @@ class DatepickerPage {
         return cy.xpath(`//tbody//tr//td[@class='day' and text()='${dayOfMonth}']`);
     }
 
+    static getDatepickerSwitch() {
+        return cy.xpath(`//thead//tr//th[@class="datepicker-switch"]`);
+    }
+
 }
 
 export default DatepickerPage
