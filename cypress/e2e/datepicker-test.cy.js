@@ -14,15 +14,26 @@ describe('Datepicker', () =>  {
 
     it(`Check that today's date is selected by default`, () => {
       datepickerStep.checkThatCurrentDateIsSelected();
-        // cy.getCurrentDate().then((currentDate) => {
-        //   console.log('Current Date:', currentDate);
-        // });
     })
 
-    it.only(`Select the next day and check that it's selected`, () => {
+    it(`Select the next day and check that it's selected`, () => {
         datepickerStep.selectNextDayDate();
+        datepickerStep.checkThatNextDayDateIsSelected();
     })
 
+    it(`Select the next month and check that it's selected`, () => {
+      datepickerStep.selectNextMonthDate();
+      datepickerStep.checkThatNextMonthDateIsSelected();
+    })
+
+    it(`Select the next year and check that it's selected`, () => {
+      datepickerStep.selectNextYearDate();
+      datepickerStep.checkThatNextYearDateIsSelected();
+    })
+
+    it.only(`Select a random year, month, day and check that this random date is selected`, () => {
+      datepickerStep.selectRandomYearDayMonth();
+    })
     
   
   });

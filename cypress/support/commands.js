@@ -4,13 +4,39 @@ Cypress.Commands.add('getCurrentDate', () => {
     return dayjs().format('MM-DD-YYYY');
   });
 
-  // Cypress.Commands.add('getCurrentDate', () => {
-//     const today = new Date();
-//     const month = (today.getMonth() + 1).toString().padStart(2, '0');
-//     const day = today.getDate().toString().padStart(2, '0');
-//     const year = today.getFullYear();
-//     return `${month}-${day}-${year}`;
-//   });
+Cypress.Commands.add('getCurrentDate', () => {
+  const currentDate = dayjs().format('MM-DD-YYYY');
+  const currentMonth = dayjs(currentDate).format('MMMM');
+  const currentYear = dayjs(currentDate).format('YYYY')
+  return { currentDate, currentMonth, currentYear};
+  });
+
+Cypress.Commands.add('getNextDayDate', () => {
+  cy.getCurrentDate().then((currentDate) => {
+    const nextDayDate = dayjs(currentDate).add(1, 'day').format('MM-DD-YYYY');
+    const dayOfMonth = dayjs(nextDayDate).format('D');
+    return { nextDayDate, dayOfMonth};
+  })
+});
+
+Cypress.Commands.add('getNextMonthDate', (currentDate) => {
+  const currentMonth = dayjs(currentDate).format('MMMM');
+  const nextDayDate = dayjs(currentDate).add(1, 'day');
+  const dayOfMonth = nextDayDate.format('D');
+  const nextMonthDate = nextDayDate.add(1, 'month').format('MM-DD-YYYY');
+  const nextMonthName = dayjs(nextMonthDate).format('MMM');
+  return { currentMonth, dayOfMonth, nextMonthDate, nextMonthName };
+  });
+
+Cypress.Commands.add('getNextYearDate', (currentDate) => {
+  const currentMonth = dayjs(currentDate).format('MMMM');
+  const nextDayDate = dayjs(currentDate).add(1, 'day');
+  const dayOfMonth = nextDayDate.format('D');
+  const nextMonthDate = nextDayDate.add(1, 'month').format('MM-DD-YYYY');
+  const nextMonthName = dayjs(nextMonthDate).format('MMM');
+  const nextYearDate = dayjs(nextMonthDate).add(1, 'year').format('MM-DD-YYYY');
+  return { currentMonth, dayOfMonth, nextMonthDate, nextMonthName, nextYearDate };
+  });
 
 // ***********************************************
 // This example commands.js shows you how to
