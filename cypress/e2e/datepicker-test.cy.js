@@ -16,7 +16,7 @@ describe('Datepicker', () =>  {
       datepickerStep.checkThatCurrentDateIsSelected();
     })
 
-    it(`Select the next day and check that it's selected`, () => {
+    it.only(`Select the next day and check that it's selected`, () => {
         datepickerStep.selectNextDayDate();
         datepickerStep.checkThatNextDayDateIsSelected();
     })
@@ -31,7 +31,7 @@ describe('Datepicker', () =>  {
       datepickerStep.checkThatNextYearDateIsSelected();
     })
 
-    it.only(`Select a random year, month, day and check that this random date is selected`, () => {
+    it(`Select a random year, month, day and check that this random date is selected`, () => {
       datepickerStep.selectRandomYearDayMonth();
     })
     
