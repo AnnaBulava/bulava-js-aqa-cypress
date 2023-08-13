@@ -11,13 +11,12 @@ Cypress.Commands.add('getCurrentDate', () => {
   return { currentDate, currentMonth, currentYear};
   });
 
-Cypress.Commands.add('getNextDayDate', () => {
-  return cy.getCurrentDate().then((currentDate) => {
+Cypress.Commands.add('getNextDayDate', (currentDate) => {
     const nextDayDate = dayjs(currentDate).add(1, 'day').format('MM-DD-YYYY');
     const dayOfMonth = dayjs(nextDayDate).format('D');
     return { nextDayDate, dayOfMonth };
   })
-});
+;
 
 Cypress.Commands.add('getNextMonthDate', (currentDate) => {
   const currentMonth = dayjs(currentDate).format('MMMM');
